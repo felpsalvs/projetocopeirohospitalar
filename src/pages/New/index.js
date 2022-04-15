@@ -24,6 +24,8 @@ export default function New(){
     const [status, setStatus] = useState('Aberto');
     const [complemento, setComplemento] = useState('');
 
+    const [idCostumer, setIdCostumer] = useState(false);
+
     const { user } = useContext(AuthContext);
 
     useEffect (()=>{
@@ -50,6 +52,10 @@ export default function New(){
                 setCustomers(lista);
                 setLoadCustomers(false);
 
+                if(id){
+                    loadId(lista);
+                }
+
             })
             .catch((error)=>{
                 console.log('deu algum erro!', error);
@@ -59,11 +65,53 @@ export default function New(){
         }
 
         loadCustomers();
-    }, []);
+    }, [id]);
+
+    async function loadId(lista){
+        await firebase.firestore().collection('chamados').doc(id)
+        .get()
+        .then((snapshot)=>{
+            setAssunto(snapshot.data().assunto);
+            setStatus(snapshot.data().status);
+            setComplemento(snapshot.data().complemento)
+
+            let index = lista.findIndex(item => item.id === snapshot.data().clienteId);
+            setCustomerSelected(index);
+            setIdCostumer(true);
+
+        })
+        .catch((err)=>{
+            console.log('ERRO NO ID PASSADO:', err);
+        })
+    }
 
 
     async function handleRegister(e){
         e.preventDefault();
+
+        if(idCostumer){
+            await firebase.firestore().collection('chamados')
+            .doc(id)
+            .update({
+            cliente: customers[customerSelected].nomeFantasia,
+            clienteId: customers[customerSelected].id,
+            assunto: assunto,
+            status: status,
+            complemento: complemento,
+            userId: user.uid
+            })
+            .then(()=>{
+                toast.success('Chamado editado com sucesso!');
+                setCustomerSelected(0);
+                setComplemento('');
+                history.push('/dashboard');
+            })
+            .catch((err)=>{
+                toast.error('Ops, erro aos registrar, tente mais tarde')
+                console.log(err);
+            })
+            return;
+        }
 
         await firebase.firestore().collection('chamados')
         .add({
