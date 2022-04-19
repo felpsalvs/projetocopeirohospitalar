@@ -52,8 +52,8 @@ table caption{
 }
 
 table tr{
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #ccc;
+    border: 1px solid rgb(230, 230, 230);
     padding: .35em;
 }
 

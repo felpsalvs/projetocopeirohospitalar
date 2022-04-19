@@ -106,6 +106,7 @@ export default function Dashboard(){
             )
         }
 
+        
     return(
         <div>
             <Header/>
@@ -133,7 +134,7 @@ export default function Dashboard(){
                     <table>
                         <thead>
                             <tr>
-                                <th scope='col'>Cliente</th>
+                                <th scope='col'>Paciente</th>
                                 <th scope='col'>Assunto</th>
                                 <th scope='col'>Status</th>
                                 <th scope='col'>Cadastrado em</th>
@@ -147,11 +148,11 @@ export default function Dashboard(){
                                     <td data-label='Cliente'>{item.cliente}</td>
                                     <td data-label='Assunto'>{item.assunto}</td>
                                     <td data-label='Status'>
-                                        <span className='badge' style={{backgroundColor: item.status === 'Aberto' ? '#5cb85c' : '#999'}}>{item.status}</span>
+                                        <span className='badge' style={{backgroundColor: item.status === 'Aberto' ? '#999' : '#5cb85c'}}>{item.status}</span>
                                     </td>
                                     <td data-label='Cadastrado'>{item.createdFormated}</td>
                                     <td data-label='#'>
-                                        <button className='action' style={{backgroundColor: '#3583f6'}}>
+                                        <button className='action' style={{backgroundColor: '#3583f6'}} onClick={()=> togglePostModal(item)}>
                                             <FiSearch color='#fff' size={17} />
                                         </button>
                                         <Link className='action' style={{backgroundColor: '#f6a935'}} to={`/new/${item.id}`}>

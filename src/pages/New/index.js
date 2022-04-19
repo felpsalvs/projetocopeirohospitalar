@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { useState, useEffect, useContext } from 'react';
 
@@ -28,7 +30,7 @@ export default function New(){
 
     const { user } = useContext(AuthContext);
 
-    useEffect (()=>{
+    useEffect (() => {
         async function loadCustomers(){
             await firebase.firestore().collection('customers')
             .get()
@@ -43,8 +45,8 @@ export default function New(){
                 })
 
                 if(lista.length === 0){
-                    console.log('Nenhuma empresa encontrada');
-                    setCustomers([{id: '1', nomeFantasia: 'Freela' }]);
+                    console.log('Nenhum paciente encontrada');
+                    setCustomers([ {id: '1', nomeFantasia: 'Freela' } ]);
                     setLoadCustomers(false);
                     return;
                 }
@@ -58,13 +60,14 @@ export default function New(){
 
             })
             .catch((error)=>{
-                console.log('deu algum erro!', error);
+                console.log('Deu algum erro!', error);
                 setLoadCustomers(false);
-                setCustomers([{id: '1', nomeFantasia: ''}]);
+                setCustomers([{id: '1', nomeFantasia: '' }]);
             })
         }
 
         loadCustomers();
+        
     }, [id]);
 
     async function loadId(lista){
@@ -82,6 +85,7 @@ export default function New(){
         })
         .catch((err)=>{
             console.log('ERRO NO ID PASSADO:', err);
+            setIdCustomer(false);
         })
     }
 
@@ -107,7 +111,7 @@ export default function New(){
                 history.push('/dashboard');
             })
             .catch((err)=>{
-                toast.error('Ops, erro aos registrar, tente mais tarde')
+                toast.error('Ops, erro aos registrar, tente mais tarde.')
                 console.log(err);
             })
             return;
@@ -128,9 +132,9 @@ export default function New(){
             setComplemento('');
             setCustomerSelected(0);
         })
-        .catch((error)=>{
+        .catch((err)=>{
             toast.error('Ops, erro ao registrar, tente mais tarde.')
-            console.log(error);
+            console.log(err);
         })
     }
 
@@ -162,10 +166,10 @@ export default function New(){
 
                     <form className='form-profile' onSubmit={handleRegister}>
 
-                        <label>Cliente</label>
+                        <label>Paciente</label>
 
                         {loadCustomers ? (
-                            <input type='text' disabled={true} value='Carregando clientes...'/>
+                            <input type='text' disabled={true} value='Carregando pacientes...'/>
                         ):(
                         <select value={customerSelected} onChange={handleChangeCustomers}>
                             {customers.map((item, index)=>{
@@ -182,9 +186,9 @@ export default function New(){
 
                         <label>Assunto</label>
                         <select value={assunto} onChange={handleChangeSelect}>
-                            <option value='Suporte'>Suporte</option>
-                            <option value='Visita Tecnica'>Visita Técnica</option>
-                            <option value='Financeiro'>Financeiro</option>
+                            <option value='Mudança de dieta'>Mudança de dieta</option>
+                            <option value='Admissão de paciente'>Admissão de paciente</option>
+                            <option value='Alta'>Alta</option>
                         </select>
 
                         <label>Status</label>

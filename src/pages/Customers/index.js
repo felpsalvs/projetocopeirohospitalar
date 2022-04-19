@@ -26,11 +26,11 @@ export default function Customers(){
                 setNomeFantasia('');
                 setCnpj('');
                 setEndereço('');
-                toast.info('empresa cadastrada com sucesso!');
+                toast.info('Paciente cadastrado com sucesso!');
             })
             .catch((error)=>{
                 console.log(error);
-                toast.error('Erro ao cadastrar essa empresa.');
+                toast.error('Erro ao cadastrar esse paciente.');
             })
         }else{
             toast.error('Preencha todos os campos!')
@@ -41,17 +41,17 @@ export default function Customers(){
         <div>
             <Header/>
             <div className='content'>
-                <Title name='Clientes'>
+                <Title name='Pacientes'>
                     <FiUser size={25}/>
                 </Title>
             <div className='container'>
                 <form className='form-profile customers' onSubmit={handleAdd}>
-                    <label>Nome fantasia</label>
-                    <input type='text' placeholder='Nome da sua empresa' value={nomeFantasia} onChange={(e)=>setNomeFantasia(e.target.value)}/>
-                    <label>CNPJ</label>
-                    <input type='text' placeholder='Seu CNPJ' value={cnpj} onChange={(e)=>setCnpj(e.target.value)}/>
-                    <label>Endereço</label>
-                    <input type='text' placeholder='Endereço da empresa' value={endereço} onChange={(e)=>setEndereço(e.target.value)}/>
+                    <label>Nome</label>
+                    <input type='text' placeholder='Nome do paciente' value={nomeFantasia} onChange={(e)=>setNomeFantasia(e.target.value)}/>
+                    <label>Data de nascimento</label>
+                    <input type='text' placeholder='Data de nascimento do paciente' value={cnpj} onChange={(e)=>setCnpj(e.target.value)}/>
+                    <label>Leito</label>
+                    <input type='text' placeholder='Numeração do Leito' value={endereço} onChange={(e)=>setEndereço(e.target.value)}/>
 
                     <button type='submit'>Cadastrar</button>
                 </form>

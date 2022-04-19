@@ -10,7 +10,7 @@
 }
 
 .sidebar div{
-    background: url('../../assets/cover 1.png');
+    background: url('../../assets/dashboard.jpg');
     background-color: #181c2e;
     background-position: center;
     background-repeat: no-repeat;
@@ -50,7 +50,7 @@
 
 .sidebar a:hover{
     background-color: #121212;
-    color: aliceblue;
+    color: rgb(255, 255, 255);
 }
 
 .content{

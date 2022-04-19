@@ -1,7 +1,7 @@
 
 .container{
     display: flex;
-    background-color: #f8f8f8;
+    background-color: #ccc;
     border-radius: 5px;
     padding: .8em;
     align-items: center;
@@ -70,4 +70,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bolder;
 }

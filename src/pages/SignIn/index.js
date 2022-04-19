@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 import './signin.css';
-import logo from '../../assets/Logo_maior.png';
+import logo from '../../assets/logo.png';
 
 function SignIn() {
   const [email, setEmail] = useState('');

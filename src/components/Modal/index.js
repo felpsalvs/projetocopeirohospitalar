@@ -1,7 +1,7 @@
 
 import './modal.css';
 
-import { FiX} from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
 
 export default function Modal({conteudo, close}){
     return(
@@ -16,7 +16,7 @@ export default function Modal({conteudo, close}){
             <h2>Detalhes do chamado</h2>
             <div className='row'>
                 <span>
-                    Cliente: <i>{conteudo.cliente}</i>
+                    Pacientes: <i>{conteudo.cliente}</i>
                 </span>
             </div>
 
