@@ -9,7 +9,6 @@ export default function Modal({conteudo, close}){
             <div className='container'>
                 <button className='close' onClick={close}>
                     <FiX size={23} color='#fff'/>
-                    Voltar
                </button>
             <div>
                 
@@ -30,7 +29,7 @@ export default function Modal({conteudo, close}){
             </div>
             <div className='row'>
                 <span>
-                    Status: <i style={{color: '#fff', backgroundColor: conteudo.status === 'Aberto' ? '#5cb85c':'#999'}}>{conteudo.cliente}</i>
+                    Status: <i style={{color: '#fff', backgroundColor: conteudo.status === 'Aberto' ? '#5cb85c':'#999'}}>{conteudo.status}</i>
                 </span>
             </div>
                 {conteudo.complemento !== '' &&(

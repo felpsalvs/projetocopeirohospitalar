@@ -26,7 +26,7 @@ export default function New(){
     const [status, setStatus] = useState('Aberto');
     const [complemento, setComplemento] = useState('');
 
-    const [idCostumer, setIdCostumer] = useState(false);
+    const [idCostumer, setIdCostumer] = useState();
 
     const { user } = useContext(AuthContext);
 
@@ -68,13 +68,13 @@ export default function New(){
 
         loadCustomers();
         
-    }, [id]);
+    }, []);
 
     async function loadId(lista){
         await firebase.firestore().collection('chamados').doc(id)
         .get()
         .then((snapshot)=>{
-            setAssunto(snapshot.data().assunto);
+            setAssunto(snapshot.data().assunto)
             setStatus(snapshot.data().status);
             setComplemento(snapshot.data().complemento)
 
@@ -85,7 +85,7 @@ export default function New(){
         })
         .catch((err)=>{
             console.log('ERRO NO ID PASSADO:', err);
-            setIdCustomer(false);
+            setIdCostumer(false);
         })
     }
 
@@ -108,7 +108,7 @@ export default function New(){
                 toast.success('Chamado editado com sucesso!');
                 setCustomerSelected(0);
                 setComplemento('');
-                history.push('/dashboard');
+                history.push('./dashboard');
             })
             .catch((err)=>{
                 toast.error('Ops, erro aos registrar, tente mais tarde.')
@@ -148,8 +148,8 @@ export default function New(){
     }
     //chamado quando troca o cliente
     function handleChangeCustomers(e){
-       // console.log('index do cliente selecionado:', e.target.value);
-      //  console.log('Cliente selecionado', customers[e.target.value])
+      console.log('index do cliente selecionado:', e.target.value);
+      console.log('Cliente selecionado', customers[e.target.value])
         setCustomerSelected(e.target.value);
     }
 

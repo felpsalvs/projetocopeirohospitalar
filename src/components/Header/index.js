@@ -13,7 +13,7 @@ export default function Header(){
     <div>
     <img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt='Foto avatar'/>
     </div>
-        <Link to='/dashboard'>
+        <Link to='/'>
             <FiHome color='#fff' size={24}/>
         Chamados
         </Link>

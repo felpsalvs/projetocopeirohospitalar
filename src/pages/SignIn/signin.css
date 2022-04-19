@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #121212;
+    background: linear-gradient(45deg, #30475E, #7E8A97, #CBAF87, #E7DEC8);
 }
 
 .login{

@@ -1,11 +1,14 @@
+/* eslint-disable no-unused-vars */
 import Header from '../../components/Header';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import './dashboard.css';
 
 import Title from '../../components/Title';
 import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
+import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import { toast } from 'react-toastify';
 
 import firebase from '../../services/firebaseConnection';
 import Modal from '../../components/Modal';
@@ -89,7 +92,22 @@ export default function Dashboard(){
             setDetail(item);
         }
 
-        if(loading){
+        const deleteItem = useCallback((id) => {
+            firebase.firestore().collection('chamados').doc(id)
+            .delete()
+            .then(() => {
+              let deleteListItem = chamados.filter((item) => item.id !== id)
+              setChamados(deleteListItem);
+              toast.info('Item deletado com sucesso!');
+            })
+            .catch((err) => {
+              toast.error('Ops erro ao tentar deletar item.');
+              console.log(err)
+            })
+        
+          }, [chamados])
+
+        if(loading === true){
             return(
                 <div>
                       <Header/>
